@@ -6,8 +6,9 @@
   <title>INNIYA — A Better Choice, Every Day.</title>
   <meta name="description" content="INNIYA is one brand for your whole day. Our food store is now open, delivering across India. Fashion, home and lifestyle are coming soon.">
   <meta name="theme-color" content="#0F3D2A">
+  
   <meta property="og:title" content="INNIYA — A Better Choice, Every Day.">
-  <meta property="og:description" content="Food is now live. Fashion, home and lifestyle are coming soon. Delivering across India.">
+  <meta property="og:description" content="INNIYA is one brand for your whole day. Our food store is now open, delivering across India. Fashion, home and lifestyle are coming soon.">
   <meta property="og:image" content="/assets/logo.png">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="/assets/logo.png">
@@ -18,35 +19,34 @@
   <link rel="stylesheet" href="/styles.css">
   <script>document.documentElement.classList.add('js')</script>
 </head>
-<body>
+<body data-page="home-page">
   <a class="skip" href="#main">Skip to content</a>
-
   <div class="announce">
-    <p>INNIYA Food is now live <span aria-hidden="true">·</span> Delivering across India <span aria-hidden="true">·</span>
-      <a href="https://wa.me/917482033299?text=Hi%20INNIYA%2C%20I%27d%20like%20to%20order%20food." target="_blank" rel="noopener">Order on WhatsApp</a></p>
+    <p><span data-announcement>INNIYA Food is now live · Delivering across India</span> <span aria-hidden="true">·</span>
+      <a data-wa="Hi INNIYA, I'd like to order food." href="https://wa.me/917482033299?text=Hi%20INNIYA%2C%20I'd%20like%20to%20order%20food." target="_blank" rel="noopener">Order on WhatsApp</a></p>
   </div>
-
   <header class="header" id="top">
     <div class="wrap header__inner">
-      <a class="brand" href="#top" aria-label="INNIYA home">
+      <a class="brand" href="/" aria-label="INNIYA home">
         <img src="/assets/logo.png" alt="" width="44" height="44">
         <span>INNIYA</span>
       </a>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
-        <span></span><span></span>
-      </button>
-      <nav class="nav" id="nav" aria-label="Main">
-        <a href="#food">Food</a>
-        <a href="#categories" class="is-soon">Fashion <em>Soon</em></a>
-        <a href="#categories" class="is-soon">Home <em>Soon</em></a>
-        <a href="#categories" class="is-soon">Lifestyle <em>Soon</em></a>
-        <a href="#story">Our story</a>
-        <a class="nav__cta" href="https://wa.me/917482033299?text=Hi%20INNIYA%2C%20I%27d%20like%20to%20order%20food." target="_blank" rel="noopener">Order now</a>
-      </nav>
+      <div class="header__right">
+        <nav class="nav" id="nav" aria-label="Main">
+          <a href="/shop" data-cat-link="food">Food</a>
+          <a href="/fashion" data-cat-link="fashion">Fashion <em>Soon</em></a>
+          <a href="/home-decor" data-cat-link="home">Home <em>Soon</em></a>
+          <a href="/lifestyle" data-cat-link="lifestyle">Lifestyle <em>Soon</em></a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </nav>
+        <a class="cart-btn" href="/cart" aria-label="Cart, 0 items" data-cart-btn><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-btn__count" data-cart-count hidden>0</span></a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
+      </div>
     </div>
   </header>
-
   <main id="main">
+
     <section class="hero wrap">
       <div class="hero__copy">
         <p class="pill"><span class="pill__dot"></span>Now live · INNIYA Food</p>
@@ -56,11 +56,10 @@
         </h1>
         <p class="hero__lead">Everyday food, picked better. Our food store is open today, delivering across India. Fashion, home and lifestyle are on their way.</p>
         <div class="hero__actions">
-          <a class="btn btn--dark" href="#food">Shop Food <span aria-hidden="true">→</span></a>
-          <a class="btn btn--line" href="https://wa.me/917482033299?text=Hi%20INNIYA%21" target="_blank" rel="noopener">Chat on WhatsApp</a>
+          <a class="btn btn--dark" href="/shop">Shop Food <span aria-hidden="true">→</span></a>
+          <a class="btn btn--line" data-wa="Hi INNIYA!" href="https://wa.me/917482033299?text=Hi%20INNIYA!" target="_blank" rel="noopener">Chat on WhatsApp</a>
         </div>
       </div>
-
       <div class="hero__stage" id="stage">
         <span class="stage__word" aria-hidden="true">inniya</span>
         <canvas id="hero-canvas" aria-label="A rotating 3D INNIYA box showing our categories: Food now live, Fashion, Home and Lifestyle coming soon" role="img"></canvas>
@@ -78,68 +77,51 @@
       </div>
     </div>
 
+    <section class="section wrap" id="featured" hidden>
+      <div class="section__head reveal">
+        <h2>Fresh in the <em>food store.</em></h2>
+        <a class="link-arrow" href="/shop">See everything →</a>
+      </div>
+      <div class="grid" data-featured></div>
+    </section>
+
     <section class="section wrap" id="categories">
       <div class="section__head reveal">
         <h2>One brand for <em>your whole day.</em></h2>
-        <p>1 open now · 3 on the way</p>
+        <p data-cat-summary>1 open now · 3 on the way</p>
       </div>
       <div class="cats">
-        <a class="cat cat--live reveal" href="#food">
+        <a class="cat cat--live reveal" href="/shop" data-cat-card="food">
           <span class="tag tag--gold">Now live</span>
-          <div>
-            <h3>Food</h3>
-            <p>Morning chai to midnight snacks.</p>
-            <span class="cat__link">Shop now →</span>
-          </div>
+          <div><h3>Food</h3><p>Morning chai to midnight snacks.</p><span class="cat__link">Shop now →</span></div>
         </a>
-        <article class="cat reveal">
+        <a class="cat reveal" href="/fashion" data-cat-card="fashion">
           <span class="tag">Coming soon</span>
-          <div>
-            <h3><em>Fashion</em></h3>
-            <p>For your Monday outfit and beyond.</p>
-            <a class="cat__link" href="https://wa.me/917482033299?text=Hi%20INNIYA%2C%20please%20tell%20me%20when%20Fashion%20launches." target="_blank" rel="noopener">Notify me on WhatsApp →</a>
-          </div>
-        </article>
-        <article class="cat reveal">
+          <div><h3><em>Fashion</em></h3><p>For your Monday outfit and beyond.</p><span class="cat__link">Get notified →</span></div>
+        </a>
+        <a class="cat reveal" href="/home-decor" data-cat-card="home">
           <span class="tag">Coming soon</span>
-          <div>
-            <h3><em>Home</em></h3>
-            <p>For slow Sundays at home.</p>
-            <a class="cat__link" href="https://wa.me/917482033299?text=Hi%20INNIYA%2C%20please%20tell%20me%20when%20Home%20launches." target="_blank" rel="noopener">Notify me on WhatsApp →</a>
-          </div>
-        </article>
-        <article class="cat reveal">
+          <div><h3><em>Home</em></h3><p>For slow Sundays at home.</p><span class="cat__link">Get notified →</span></div>
+        </a>
+        <a class="cat reveal" href="/lifestyle" data-cat-card="lifestyle">
           <span class="tag">Coming soon</span>
-          <div>
-            <h3><em>Lifestyle</em></h3>
-            <p>For everything in between.</p>
-            <a class="cat__link" href="https://wa.me/917482033299?text=Hi%20INNIYA%2C%20please%20tell%20me%20when%20Lifestyle%20launches." target="_blank" rel="noopener">Notify me on WhatsApp →</a>
-          </div>
-        </article>
+          <div><h3><em>Lifestyle</em></h3><p>For everything in between.</p><span class="cat__link">Get notified →</span></div>
+        </a>
       </div>
     </section>
 
-    <section class="section wrap" id="food">
+    <section class="section wrap" id="how">
       <div class="order">
         <div class="order__intro reveal">
-          <p class="eyebrow">INNIYA Food</p>
+          <p class="eyebrow">How ordering works</p>
           <h2>Order in three <em>easy steps.</em></h2>
-          <p>No app, no sign-up. Just a message.</p>
-          <a class="btn btn--dark" href="https://wa.me/917482033299?text=Hi%20INNIYA%2C%20I%27d%20like%20to%20order%20food." target="_blank" rel="noopener">Start my order <span aria-hidden="true">→</span></a>
+          <p>No app, no sign-up.</p>
+          <a class="btn btn--dark" href="/shop">Start shopping <span aria-hidden="true">→</span></a>
         </div>
         <ol class="steps">
-          <li class="step reveal">
-            <span class="step__num">01</span>
-            <div><h3>Say hi on WhatsApp</h3><p>Message us at +91 74820 33299.</p></div>
-          </li>
-          <li class="step reveal">
-            <span class="step__num">02</span>
-            <div><h3>Pick what you love</h3><p>We'll share today's food list with you.</p></div>
-          </li>
-          <li class="step reveal">
-            <span class="step__num">03</span>
-            <div><h3>Delivered to your door</h3><p>Anywhere across India.</p></div>
-          </li>
+          <li class="step reveal"><span class="step__num">01</span><div><h3>Fill your cart</h3><p>Pick what you love from the food store.</p></div></li>
+          <li class="step reveal"><span class="step__num">02</span><div><h3>Confirm on WhatsApp</h3><p>Send your order to us in one tap. We confirm it with you personally.</p></div></li>
+          <li class="step reveal"><span class="step__num">03</span><div><h3>Delivered to your door</h3><p>Anywhere across India.</p></div></li>
         </ol>
       </div>
     </section>
@@ -150,7 +132,7 @@
         <div class="story__points">
           <div class="reveal"><h3>Picked with care</h3><p>Every product earns its place before it reaches you.</p></div>
           <div class="reveal"><h3>One brand, every day</h3><p>Food today. Fashion, home and lifestyle next.</p></div>
-          <div class="reveal"><h3>Across India</h3><p>Ordered with a message, delivered to your door.</p></div>
+          <div class="reveal"><h3>Across India</h3><p>Ordered in minutes, delivered to your door.</p></div>
         </div>
       </div>
     </section>
@@ -161,31 +143,56 @@
           <h2>Fashion, Home &amp; Lifestyle <em>are on their way.</em></h2>
           <p>Say hi on WhatsApp and we'll tell you the day they open.</p>
         </div>
-        <a class="btn btn--dark btn--lg" href="https://wa.me/917482033299?text=Hi%20INNIYA%2C%20please%20tell%20me%20when%20new%20categories%20launch." target="_blank" rel="noopener">+91 74820 33299</a>
+        <a class="btn btn--dark btn--lg" data-wa="Hi INNIYA, please tell me when new categories launch." href="https://wa.me/917482033299?text=Hi%20INNIYA%2C%20please%20tell%20me%20when%20new%20categories%20launch." target="_blank" rel="noopener">+91 74820 33299</a>
       </div>
     </section>
   </main>
-
   <footer class="footer">
-    <div class="wrap footer__inner">
-      <div class="brand brand--foot">
-        <img src="/assets/logo.png" alt="" width="40" height="40">
-        <span>INNIYA</span>
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <div class="brand brand--foot"><img src="/assets/logo.png" alt="" width="40" height="40"><span>INNIYA</span></div>
+        <p class="footer__tag"><em>A better choice, every day.</em></p>
       </div>
-      <p class="footer__tag"><em>A better choice, every day.</em></p>
-      <div class="footer__links">
-        <a href="https://instagram.com/inniya_official" target="_blank" rel="noopener">Instagram · @inniya_official</a>
-        <a href="https://wa.me/917482033299" target="_blank" rel="noopener">WhatsApp · +91 74820 33299</a>
+      <div>
+        <h2 class="footer__h">Shop</h2>
+        <ul class="footer__list">
+          <li><a href="/shop">Food</a></li>
+          <li><a href="/fashion">Fashion</a></li>
+          <li><a href="/home-decor">Home</a></li>
+          <li><a href="/lifestyle">Lifestyle</a></li>
+        </ul>
       </div>
-      <p class="footer__copy">© 2026 INNIYA. All rights reserved.</p>
+      <div>
+        <h2 class="footer__h">INNIYA</h2>
+        <ul class="footer__list">
+          <li><a href="/about">Our story</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/cart">Cart</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer__h">Help</h2>
+        <ul class="footer__list">
+          <li><a href="/shipping-returns">Shipping &amp; returns</a></li>
+          <li><a href="/privacy">Privacy policy</a></li>
+          <li><a href="/terms">Terms of use</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer__h">Talk to us</h2>
+        <ul class="footer__list">
+          <li><a data-wa="Hi INNIYA!" href="https://wa.me/917482033299?text=Hi%20INNIYA!" target="_blank" rel="noopener">WhatsApp · +91 74820 33299</a></li>
+          <li><a href="https://instagram.com/inniya_official" target="_blank" rel="noopener">Instagram · @inniya_official</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="wrap footer__bottom"><p>© 2026 INNIYA. All rights reserved.</p><p>Delivering across India</p></div>
   </footer>
 
-  <a class="wa-float" href="https://wa.me/917482033299?text=Hi%20INNIYA%21" target="_blank" rel="noopener" aria-label="Chat with INNIYA on WhatsApp">
-    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.4A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg>
-  </a>
-
+  <a class="wa-float" data-wa="Hi INNIYA!" href="https://wa.me/917482033299?text=Hi%20INNIYA!" target="_blank" rel="noopener" aria-label="Chat with INNIYA on WhatsApp"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.4A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg></a>
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
   <script src="/assets/site.js" defer></script>
+  <script src="/assets/store.js" defer></script>
   <script type="module" src="/assets/hero.js"></script>
 </body>
 </html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin · INNIYA</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0F3D2A">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/admin.css">
+</head>
+<body>
+  <!-- Login -->
+  <main class="login" data-view="login" hidden>
+    <form class="login__card" data-login>
+      <img src="/assets/logo.png" alt="" width="72" height="72">
+      <h1>INNIYA <em>admin</em></h1>
+      <div class="field">
+        <label for="pw">Password</label>
+        <input id="pw" name="password" type="password" autocomplete="current-password" required>
+      </div>
+      <p class="msg msg--error" data-login-error role="alert" hidden></p>
+      <button class="btn btn--dark btn--block" type="submit">Log in</button>
+      <a class="muted-link" href="/">← Back to website</a>
+    </form>
+  </main>
+
+  <!-- App -->
+  <div class="app" data-view="app" hidden>
+    <header class="topbar">
+      <a class="topbar__brand" href="/" target="_blank" rel="noopener"><img src="/assets/logo.png" alt="" width="36" height="36"><span>INNIYA</span><em>admin</em></a>
+      <nav class="topbar__tabs" aria-label="Admin sections">
+        <button type="button" class="tabbtn is-active" data-tab="orders">Orders <span class="pillcount" data-new-count hidden>0</span></button>
+        <button type="button" class="tabbtn" data-tab="products">Products</button>
+        <button type="button" class="tabbtn" data-tab="settings">Settings</button>
+      </nav>
+      <div class="topbar__right">
+        <a class="btn btn--line btn--sm" href="/" target="_blank" rel="noopener">View site</a>
+        <button type="button" class="btn btn--sm btn--ghost" data-logout>Log out</button>
+      </div>
+    </header>
+
+    <p class="banner" data-storage-banner hidden></p>
+
+    <!-- Orders -->
+    <section class="panel" data-panel="orders">
+      <div class="panel__head">
+        <div><h1>Orders</h1><p class="muted" data-orders-sub></p></div>
+        <div class="filters" data-order-filters></div>
+      </div>
+      <div class="orders" data-orders></div>
+    </section>
+
+    <!-- Products -->
+    <section class="panel" data-panel="products" hidden>
+      <div class="panel__head">
+        <div><h1>Products</h1><p class="muted" data-products-sub></p></div>
+        <div class="panel__actions">
+          <label class="search"><span class="sr-only">Search products</span><input type="search" placeholder="Search products" data-psearch></label>
+          <button type="button" class="btn btn--dark" data-new-product>+ Add product</button>
+        </div>
+      </div>
+      <div class="plist" data-products></div>
+    </section>
+
+    <!-- Settings -->
+    <section class="panel" data-panel="settings" hidden>
+      <div class="panel__head"><div><h1>Settings</h1><p class="muted">Changes go live on the website within about a minute.</p></div></div>
+      <form class="settings" data-settings>
+        <fieldset class="box">
+          <legend>Categories</legend>
+          <p class="muted">Switch a category on when it's ready to sell. Its "Coming soon" page turns into a shop automatically.</p>
+          <div class="switches">
+            <label class="switch"><input type="checkbox" name="cat-food"><span class="switch__ui"></span><span>Food</span></label>
+            <label class="switch"><input type="checkbox" name="cat-fashion"><span class="switch__ui"></span><span>Fashion</span></label>
+            <label class="switch"><input type="checkbox" name="cat-home"><span class="switch__ui"></span><span>Home</span></label>
+            <label class="switch"><input type="checkbox" name="cat-lifestyle"><span class="switch__ui"></span><span>Lifestyle</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="box">
+          <legend>Website</legend>
+          <div class="field"><label for="s-ann">Announcement bar text</label><input id="s-ann" name="announcement" maxlength="160"></div>
+          <div class="field-row">
+            <div class="field"><label for="s-wa">WhatsApp number (with country code, digits only)</label><input id="s-wa" name="whatsapp" inputmode="numeric" placeholder="917482033299"></div>
+            <div class="field"><label for="s-ig">Instagram username</label><input id="s-ig" name="instagram" placeholder="inniya_official"></div>
+          </div>
+        </fieldset>
+        <div class="settings__foot">
+          <p class="msg" data-settings-msg role="status" hidden></p>
+          <button class="btn btn--dark" type="submit">Save settings</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- Product editor -->
+  <dialog class="editor" data-editor aria-labelledby="ed-title">
+    <form method="dialog" class="editor__form" data-product-form>
+      <div class="editor__head">
+        <h2 id="ed-title" data-ed-title>Add product</h2>
+        <button type="button" class="iconbtn" data-close aria-label="Close">✕</button>
+      </div>
+      <div class="editor__body">
+        <div class="editor__image">
+          <div class="imgdrop" data-imgdrop>
+            <img alt="" data-img-preview hidden>
+            <span data-img-empty>No photo yet</span>
+          </div>
+          <label class="btn btn--line btn--sm btn--block filebtn">
+            <input type="file" accept="image/jpeg,image/png,image/webp" data-file>
+            <span data-file-label>Upload photo</span>
+          </label>
+          <button type="button" class="muted-link" data-img-remove hidden>Remove photo</button>
+          <input type="hidden" name="image">
+        </div>
+        <div class="editor__fields">
+          <div class="field"><label for="p-name">Product name</label><input id="p-name" name="name" required maxlength="120"></div>
+          <div class="field-row">
+            <div class="field"><label for="p-cat">Category</label>
+              <select id="p-cat" name="category"><option value="food">Food</option><option value="fashion">Fashion</option><option value="home">Home</option><option value="lifestyle">Lifestyle</option></select>
+            </div>
+            <div class="field"><label for="p-unit">Size / weight</label><input id="p-unit" name="unit" maxlength="40" placeholder="e.g. 500 g"></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label for="p-price">Price (₹)</label><input id="p-price" name="price" type="number" min="1" step="0.01" required inputmode="decimal"></div>
+            <div class="field"><label for="p-mrp">MRP (₹, optional)</label><input id="p-mrp" name="mrp" type="number" min="0" step="0.01" inputmode="decimal"></div>
+          </div>
+          <div class="field"><label for="p-desc">Description</label><textarea id="p-desc" name="description" rows="4" maxlength="2000"></textarea></div>
+          <div class="checks">
+            <label class="switch"><input type="checkbox" name="inStock" checked><span class="switch__ui"></span><span>In stock</span></label>
+            <label class="switch"><input type="checkbox" name="featured"><span class="switch__ui"></span><span>Featured on home page</span></label>
+            <label class="switch"><input type="checkbox" name="active" checked><span class="switch__ui"></span><span>Visible on website</span></label>
+          </div>
+        </div>
+      </div>
+      <p class="msg msg--error" data-ed-error role="alert" hidden></p>
+      <div class="editor__foot">
+        <button type="button" class="btn btn--danger btn--sm" data-delete hidden>Delete</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn btn--line" data-close>Cancel</button>
+        <button type="submit" class="btn btn--dark" data-save>Save product</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+  <script src="/assets/admin.js" defer></script>
+</body>
+</html>

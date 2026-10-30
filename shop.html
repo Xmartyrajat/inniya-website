@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop Food · INNIYA</title>
+  <meta name="description" content="Shop INNIYA Food. Everyday food, picked better, delivered across India.">
+  <meta name="theme-color" content="#0F3D2A">
+  
+  <meta property="og:title" content="Shop Food · INNIYA">
+  <meta property="og:description" content="Shop INNIYA Food. Everyday food, picked better, delivered across India.">
+  <meta property="og:image" content="/assets/logo.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-page="shop">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="announce">
+    <p><span data-announcement>INNIYA Food is now live · Delivering across India</span> <span aria-hidden="true">·</span>
+      <a data-wa="Hi INNIYA, I'd like to order food." href="https://wa.me/917482033299?text=Hi%20INNIYA%2C%20I'd%20like%20to%20order%20food." target="_blank" rel="noopener">Order on WhatsApp</a></p>
+  </div>
+  <header class="header" id="top">
+    <div class="wrap header__inner">
+      <a class="brand" href="/" aria-label="INNIYA home">
+        <img src="/assets/logo.png" alt="" width="44" height="44">
+        <span>INNIYA</span>
+      </a>
+      <div class="header__right">
+        <nav class="nav" id="nav" aria-label="Main">
+          <a href="/shop" aria-current="page" data-cat-link="food">Food</a>
+          <a href="/fashion" data-cat-link="fashion">Fashion <em>Soon</em></a>
+          <a href="/home-decor" data-cat-link="home">Home <em>Soon</em></a>
+          <a href="/lifestyle" data-cat-link="lifestyle">Lifestyle <em>Soon</em></a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+        </nav>
+        <a class="cart-btn" href="/cart" aria-label="Cart, 0 items" data-cart-btn><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><span class="cart-btn__count" data-cart-count hidden>0</span></a>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Open menu"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+
+    <section class="page-hero wrap">
+      <p class="eyebrow">INNIYA Store</p>
+      <h1>Shop <em>food.</em></h1>
+      <p class="page-hero__lead">Everyday food, picked better. Add to cart and confirm your order on WhatsApp.</p>
+    </section>
+    <section class="wrap shop">
+      <div class="shop__bar">
+        <div class="tabs" role="tablist" aria-label="Categories" data-tabs>
+          <button class="tab is-active" type="button" data-tab="food">Food</button>
+          <button class="tab" type="button" data-tab="fashion">Fashion <em>Soon</em></button>
+          <button class="tab" type="button" data-tab="home">Home <em>Soon</em></button>
+          <button class="tab" type="button" data-tab="lifestyle">Lifestyle <em>Soon</em></button>
+        </div>
+        <div class="shop__tools">
+          <label class="search"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="sr-only">Search products</span><input type="search" placeholder="Search" data-search></label>
+          <label class="select"><span class="sr-only">Sort</span>
+            <select data-sort>
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+              <option value="name">Name A–Z</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <p class="shop__count" data-count aria-live="polite"></p>
+      <div class="grid" data-grid>
+        <div class="card card--skeleton"></div><div class="card card--skeleton"></div><div class="card card--skeleton"></div><div class="card card--skeleton"></div>
+      </div>
+      <div class="empty" data-empty hidden></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <div class="brand brand--foot"><img src="/assets/logo.png" alt="" width="40" height="40"><span>INNIYA</span></div>
+        <p class="footer__tag"><em>A better choice, every day.</em></p>
+      </div>
+      <div>
+        <h2 class="footer__h">Shop</h2>
+        <ul class="footer__list">
+          <li><a href="/shop">Food</a></li>
+          <li><a href="/fashion">Fashion</a></li>
+          <li><a href="/home-decor">Home</a></li>
+          <li><a href="/lifestyle">Lifestyle</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer__h">INNIYA</h2>
+        <ul class="footer__list">
+          <li><a href="/about">Our story</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/cart">Cart</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer__h">Help</h2>
+        <ul class="footer__list">
+          <li><a href="/shipping-returns">Shipping &amp; returns</a></li>
+          <li><a href="/privacy">Privacy policy</a></li>
+          <li><a href="/terms">Terms of use</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer__h">Talk to us</h2>
+        <ul class="footer__list">
+          <li><a data-wa="Hi INNIYA!" href="https://wa.me/917482033299?text=Hi%20INNIYA!" target="_blank" rel="noopener">WhatsApp · +91 74820 33299</a></li>
+          <li><a href="https://instagram.com/inniya_official" target="_blank" rel="noopener">Instagram · @inniya_official</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap footer__bottom"><p>© 2026 INNIYA. All rights reserved.</p><p>Delivering across India</p></div>
+  </footer>
+
+  <a class="wa-float" data-wa="Hi INNIYA!" href="https://wa.me/917482033299?text=Hi%20INNIYA!" target="_blank" rel="noopener" aria-label="Chat with INNIYA on WhatsApp"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 21l1.9-5.4A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .9a5 5 0 0 1-2.8-2.8l.9-1-1-2z"/></svg></a>
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+  <script src="/assets/site.js" defer></script>
+  <script src="/assets/store.js" defer></script>
+</body>
+</html>

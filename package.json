@@ -2,13 +2,19 @@
   "name": "inniya-website",
   "version": "1.0.0",
   "private": true,
-  "description": "INNIYA — A Better Choice, Every Day.",
+  "description": "INNIYA \u2014 A Better Choice, Every Day.",
   "scripts": {
     "bundle": "esbuild src/hero.js --bundle --minify --format=esm --target=es2020 --outfile=assets/hero.js",
-    "dev": "npx serve ."
+    "dev": "node scripts/dev-server.mjs",
+    "pages": "node scripts/build-pages.mjs",
+    "build:all": "npm run bundle && npm run pages"
   },
   "devDependencies": {
     "esbuild": "^0.25.0",
     "three": "^0.187.0"
-  }
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.8.2"
+  },
+  "type": "module"
 }
