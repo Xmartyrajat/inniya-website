@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 const WA = '917482033299';
 const wa = (text) => `https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
 const YEAR = 2026;
+const V = Date.now().toString(36); // cache-busting version for CSS/JS
 
 const CATS = [
   { key: 'food', name: 'Food & Grocery', short: 'Food', href: '/shop', soon: null, img: '/assets/img/products/gur-wide.jpg', line: 'Pantry staples, snacks and everyday food, picked better.' },
@@ -63,7 +64,7 @@ function head({ title, description }) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles.css?v=${V}">
   <script>document.documentElement.classList.add('js')</script>
 </head>`;
 }
@@ -175,8 +176,8 @@ function footer() {
 
   <a class="wa-float" data-wa="Hi INNIYA!" href="${wa('Hi INNIYA!')}" target="_blank" rel="noopener" aria-label="Chat with INNIYA on WhatsApp">${sv(I.chat, 28)}</a>
   <div class="toast" role="status" aria-live="polite" data-toast></div>
-  <script src="/assets/site.js" defer></script>
-  <script src="/assets/store.js" defer></script>`;
+  <script src="/assets/site.js?v=${V}" defer></script>
+  <script src="/assets/store.js?v=${V}" defer></script>`;
 }
 
 const end = '\n</body>\n</html>\n';
