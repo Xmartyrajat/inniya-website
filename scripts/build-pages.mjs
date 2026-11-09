@@ -72,6 +72,11 @@ function header(active) {
   const cur = (k) => (active === k ? ' aria-current="page"' : '');
   return `<body data-page="${active}">
   <a class="skip" href="#main">Skip to content</a>
+  <a class="festbar" href="/product/bihari-mahaprasad-thekuwaa">
+    <img src="/assets/img/products/thekuwa.jpg" alt="" width="40" height="40">
+    <span class="festbar__text"><b>छठ महापर्व · Chhath Mahaprasad Thekuwaa</b><span class="festbar__sep" aria-hidden="true">·</span><span>Ghat se Ghar tak</span><span class="festbar__sep" aria-hidden="true">·</span><span>Booking open till <b>20 November</b></span></span>
+    <span class="festbar__cta">Book now →</span>
+  </a>
   <div class="topbar">
     <div class="wrap topbar__inner">
       <ul class="topbar__perks">
@@ -190,6 +195,11 @@ const pages = [];
 
 // ---------------- Home ----------------
 const slides = [
+  {
+    kicker: 'Chhath Mahaprasad', title: 'Thekuwaa', tag: 'घाट से घर तक · Ghat se Ghar tak',
+    text: 'Traditional Bihari Thekuwaa, made the Mahaprasad way. Booking open till 20 November.', img: '/assets/img/products/thekuwa-wide.jpg',
+    cta: ['Book Thekuwaa', '/product/bihari-mahaprasad-thekuwaa'],
+  },
   {
     kicker: 'Introducing', title: 'INNIYA', tag: 'A better choice, every day.',
     text: 'Your destination for quality products in everyday life.', img: '/assets/img/hero-food.jpg',
