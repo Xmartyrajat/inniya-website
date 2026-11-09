@@ -1,1 +1,66 @@
-[]
+[
+  {
+    "id": "prd_bihari_makhana",
+    "slug": "bihari-premium-makhana",
+    "name": "Bihari Premium Makhana",
+    "unit": "250 g",
+    "price": 349,
+    "mrp": 449,
+    "image": "/assets/img/products/makhana.jpg",
+    "description": "बिहार का सुपरफ़ूड. Premium phool makhana from Bihar.\n100% natural · No preservatives · High protein · Rich in calcium & fiber.\nEnjoy it roasted with ghee, in kheer, or as a light everyday snack.",
+    "category": "food",
+    "inStock": true,
+    "featured": true,
+    "active": true,
+    "createdAt": "2026-11-10T00:00:00.000Z",
+    "updatedAt": "2026-11-10T00:00:00.000Z"
+  },
+  {
+    "id": "prd_bihari_gur",
+    "slug": "bihari-natural-gur",
+    "name": "Bihari Natural Gur",
+    "unit": "1 kg",
+    "price": 199,
+    "mrp": 249,
+    "image": "/assets/img/products/gur.jpg",
+    "description": "बिहार का शुद्ध गुड़ · खेतों से आपके घर तक.\n100% natural · No preservatives · Unrefined & nutritious · Rich in iron & minerals.\nA wholesome sweetener for chai, sweets and everyday cooking. Product of Bihar.",
+    "category": "food",
+    "inStock": true,
+    "featured": true,
+    "active": true,
+    "createdAt": "2026-11-10T00:00:00.000Z",
+    "updatedAt": "2026-11-10T00:00:00.000Z"
+  },
+  {
+    "id": "prd_bihari_thekuwaa",
+    "slug": "bihari-mahaprasad-thekuwaa",
+    "name": "Bihari Mahaprasad Thekuwaa",
+    "unit": "400 g",
+    "price": 299,
+    "mrp": 399,
+    "image": "/assets/img/products/thekuwa.jpg",
+    "description": "Ghat se Ghar tak. Bihar's beloved Mahaprasad, made the traditional way.\nTraditional Bihari recipe · No preservatives · Pure & natural ingredients.\nPerfect with evening chai, for festivals, or as a gift from home.",
+    "category": "food",
+    "inStock": true,
+    "featured": true,
+    "active": true,
+    "createdAt": "2026-11-10T00:00:00.000Z",
+    "updatedAt": "2026-11-10T00:00:00.000Z"
+  },
+  {
+    "id": "prd_bihari_chura",
+    "slug": "bihari-chura",
+    "name": "Bihari Chura",
+    "unit": "1 kg",
+    "price": 149,
+    "mrp": 179,
+    "image": "/assets/img/products/chura.jpg",
+    "description": "बिहार का प्रसिद्ध चूड़ा · खेतों से घर तक · बिहार की पारंपरिक पहचान.\nNatural & pure · No preservatives · Light & healthy · Everyday food.\nMake classic dahi-chura, poha or chura matar. Product of Bihar.",
+    "category": "food",
+    "inStock": true,
+    "featured": true,
+    "active": true,
+    "createdAt": "2026-11-10T00:00:00.000Z",
+    "updatedAt": "2026-11-10T00:00:00.000Z"
+  }
+]

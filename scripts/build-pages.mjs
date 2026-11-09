@@ -7,7 +7,7 @@ const wa = (text) => `https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
 const YEAR = 2026;
 
 const CATS = [
-  { key: 'food', name: 'Food & Grocery', short: 'Food', href: '/shop', soon: null, img: '/assets/img/cat-food.jpg', line: 'Pantry staples, snacks and everyday food, picked better.' },
+  { key: 'food', name: 'Food & Grocery', short: 'Food', href: '/shop', soon: null, img: '/assets/img/products/gur-wide.jpg', line: 'Pantry staples, snacks and everyday food, picked better.' },
   { key: 'fashion', name: 'Fashion', short: 'Fashion', href: '/fashion', img: '/assets/img/cat-fashion.jpg', line: 'For your Monday outfit and beyond.' },
   { key: 'home', name: 'Home & Living', short: 'Home', href: '/home-decor', img: '/assets/img/cat-home.jpg', line: 'For slow Sundays at home.' },
   { key: 'lifestyle', name: 'Lifestyle', short: 'Lifestyle', href: '/lifestyle', img: '/assets/img/cat-lifestyle.jpg', line: 'For everything in between.' },
@@ -196,8 +196,8 @@ const slides = [
     cta: ['Shop now', '/shop'], showCats: true,
   },
   {
-    kicker: 'Now live', title: 'Food &amp; Grocery', tag: 'Picked better, delivered across India.',
-    text: 'Pantry staples and everyday food, chosen with care. Order in minutes and confirm on WhatsApp.', img: '/assets/img/cat-food.jpg',
+    kicker: 'Now live', title: 'Bihar ka Swaad', tag: 'Food &amp; Grocery · Delivered across India',
+    text: 'Bihari Makhana, Gur, Thekuwaa and Chura, straight from Bihar. Order in minutes and confirm on WhatsApp.', img: '/assets/img/products/makhana-wide.jpg',
     cta: ['Shop Food &amp; Grocery', '/shop'],
   },
   {
@@ -252,7 +252,7 @@ ${trust}
 
     <section class="section wrap">
       <div class="promo">
-        <div class="promo__img"><img src="/assets/img/cat-food.jpg" alt="" loading="lazy"></div>
+        <div class="promo__img"><img src="/assets/img/products/thekuwa-wide.jpg" alt="" loading="lazy"></div>
         <div class="promo__copy">
           <p class="eyebrow">How ordering works</p>
           <h2>Order in three easy steps</h2>
