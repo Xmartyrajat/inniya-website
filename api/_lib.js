@@ -69,8 +69,9 @@ export async function saveImage(filename, buffer, contentType) {
   const mode = storageMode();
   if (mode === 'blob') {
     const { put } = await import('@vercel/blob');
-    const out = await put(key, buffer, { access: 'public', contentType, addRandomSuffix: true });
-    return out.url;
+    // Store is private: images are served through /api/image
+    const out = await put(key, buffer, { access: 'private', contentType, addRandomSuffix: true });
+    return '/api/image?p=' + encodeURIComponent(out.pathname);
   }
   if (mode === 'local') {
     const dir = path.join(LOCAL_DIR, 'uploads');
