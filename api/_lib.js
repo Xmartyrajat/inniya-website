@@ -9,7 +9,7 @@ const ROOT = process.cwd();
 const SEED_DIR = path.join(ROOT, 'data');
 const LOCAL_DIR = path.join(ROOT, '.data');
 
-export const CATEGORIES = ['food', 'fashion', 'home', 'lifestyle'];
+export const CATEGORIES = ['food', 'fashion', 'home', 'lifestyle', 'essentials'];
 export const ORDER_STATUSES = ['new', 'confirmed', 'shipped', 'delivered', 'cancelled'];
 
 const hasBlob = () => !!process.env.BLOB_READ_WRITE_TOKEN;
@@ -89,8 +89,8 @@ export async function saveImage(filename, buffer, contentType) {
 export const DEFAULT_SETTINGS = {
   whatsapp: '917482033299',
   instagram: 'inniya_official',
-  announcement: 'INNIYA Food is now live · Delivering across India',
-  categories: { food: true, fashion: false, home: false, lifestyle: false },
+  announcement: 'Delivering across India',
+  categories: { food: true, fashion: false, home: false, lifestyle: false, essentials: false },
 };
 
 export async function getSettings() {

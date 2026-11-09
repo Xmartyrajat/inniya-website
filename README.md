@@ -3,8 +3,8 @@
 **A Better Choice, Every Day.** Online store for INNIYA. Food is live now; Fashion, Home and Lifestyle are coming soon.
 
 ## Pages
-`/` home (3D hero) · `/shop` · `/product/<name>` · `/cart` (checkout → WhatsApp) · `/about` · `/contact` ·
-`/fashion` `/home-decor` `/lifestyle` (coming soon until switched on) · `/shipping-returns` `/privacy` `/terms` · `/admin`
+`/` home (banner carousel) · `/shop` (search, deals) · `/product/<name>` · `/cart` (checkout → WhatsApp) · `/wishlist` · `/track` · `/about` · `/contact` ·
+`/fashion` `/home-decor` `/lifestyle` `/essentials` (coming soon until switched on) · `/shipping-returns` `/privacy` `/terms` · `/admin`
 
 ## Admin (`/admin`)
 - **Orders:** every order placed on the site, with customer details, items, total and status (New → Confirmed → Shipped → Delivered / Cancelled). There's a one-tap WhatsApp button for each customer.

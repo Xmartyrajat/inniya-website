@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  var CATS = { food: 'Food', fashion: 'Fashion', home: 'Home', lifestyle: 'Lifestyle' };
+  var CATS = { food: 'Food & Grocery', fashion: 'Fashion', home: 'Home & Living', lifestyle: 'Lifestyle', essentials: 'Everyday Essentials' };
   var STATUS_LABEL = { new: 'New', confirmed: 'Confirmed', shipped: 'Shipped', delivered: 'Delivered', cancelled: 'Cancelled' };
   var S = { products: [], orders: [], statuses: [], settings: null, filter: 'all', psearch: '', editing: null };
 
