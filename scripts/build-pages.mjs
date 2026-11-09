@@ -72,9 +72,12 @@ function header(active) {
   const cur = (k) => (active === k ? ' aria-current="page"' : '');
   return `<body data-page="${active}">
   <a class="skip" href="#main">Skip to content</a>
-  <a class="festbar" href="/product/bihari-mahaprasad-thekuwaa">
+  <a class="festbar" href="/product/bihari-mahaprasad-thekuwaa" data-countdown="2026-11-21T00:00:00+05:30" data-countdown-hide>
     <img src="/assets/img/products/thekuwa.jpg" alt="" width="40" height="40">
-    <span class="festbar__text"><b>छठ महापर्व · Chhath Mahaprasad Thekuwaa</b><span class="festbar__sep" aria-hidden="true">·</span><span>Ghat se Ghar tak</span><span class="festbar__sep" aria-hidden="true">·</span><span>Booking open till <b>20 November</b></span></span>
+    <span class="festbar__text"><b>छठ महापर्व · Chhath Mahaprasad Thekuwaa</b><span class="festbar__sub">Ghat se Ghar tak · Booking closes in</span></span>
+    <span class="cd cd--mini" role="timer" aria-label="Time left to book">
+      <span><b data-cd="d">--</b><i>d</i></span><span><b data-cd="h">--</b><i>h</i></span><span><b data-cd="m">--</b><i>m</i></span><span><b data-cd="s">--</b><i>s</i></span>
+    </span>
     <span class="festbar__cta">Book now →</span>
   </a>
   <div class="topbar">
@@ -197,8 +200,8 @@ const pages = [];
 const slides = [
   {
     kicker: 'Chhath Mahaprasad', title: 'Thekuwaa', tag: 'घाट से घर तक · Ghat se Ghar tak',
-    text: 'Traditional Bihari Thekuwaa, made the Mahaprasad way. Booking open till 20 November.', img: '/assets/img/products/thekuwa-wide.jpg',
-    cta: ['Book Thekuwaa', '/product/bihari-mahaprasad-thekuwaa'],
+    text: 'Traditional Bihari Thekuwaa, made the Mahaprasad way. Book before time runs out.', img: '/assets/img/products/thekuwa-wide.jpg',
+    cta: ['Book Thekuwaa', '/product/bihari-mahaprasad-thekuwaa'], countdown: true,
   },
   {
     kicker: 'Introducing', title: 'INNIYA', tag: 'A better choice, every day.',
@@ -235,6 +238,9 @@ pages.push(page({
               <h${i === 0 ? '1' : '2'} class="slide__title">${s.title}</h${i === 0 ? '1' : '2'}>
               <p class="slide__tag${/[\u0900-\u097F]/.test(s.tag) ? ' slide__tag--hi' : ''}" ${/[\u0900-\u097F]/.test(s.tag) ? 'lang="hi"' : ''}>${s.tag}</p>
               <p class="slide__text">${s.text}</p>
+              ${s.countdown ? `<div class="cd cd--big" data-countdown="2026-11-21T00:00:00+05:30" role="timer" aria-label="Time left to book Chhath Mahaprasad">
+                <div><b data-cd="d">--</b><i>Days</i></div><div><b data-cd="h">--</b><i>Hours</i></div><div><b data-cd="m">--</b><i>Minutes</i></div><div><b data-cd="s">--</b><i>Seconds</i></div>
+              </div><p class="cd__note" data-countdown-note>Booking closes 20 November, 12 midnight</p>` : ''}
               ${s.showCats ? `<ul class="slide__cats">${CATS.map((c) => `<li><a href="${c.href}"><span>${sv(catIcon[c.key], 24)}</span>${c.name.replace(' & ', ' &amp;<br>').replace('Everyday ', 'Everyday<br>')}</a></li>`).join('')}</ul>` : ''}
               <a class="btn btn--green" href="${s.cta[1]}"${s.external ? ' target="_blank" rel="noopener"' : ''}${i ? ' tabindex="-1"' : ''}>${s.cta[0]} <span aria-hidden="true">→</span></a>
             </div>

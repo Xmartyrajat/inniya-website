@@ -58,6 +58,36 @@
     start();
   }
 
+  // Countdown timers
+  var cds = Array.prototype.slice.call(document.querySelectorAll('[data-countdown]'));
+  if (cds.length) {
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var tickCd = function () {
+      var now = Date.now();
+      cds.forEach(function (el) {
+        var end = Date.parse(el.getAttribute('data-countdown'));
+        var left = Math.max(0, Math.floor((end - now) / 1000));
+        if (left <= 0) {
+          if (el.hasAttribute('data-countdown-hide')) { el.hidden = true; return; }
+          el.classList.add('is-over');
+          var note = el.parentNode && el.parentNode.querySelector('[data-countdown-note]');
+          if (note) note.textContent = 'Booking for Chhath Mahaprasad is now closed.';
+        }
+        var v = { d: Math.floor(left / 86400), h: Math.floor(left % 86400 / 3600), m: Math.floor(left % 3600 / 60), s: left % 60 };
+        el.querySelectorAll('[data-cd]').forEach(function (b) {
+          var k = b.getAttribute('data-cd');
+          var t = k === 'd' ? String(v.d) : pad(v[k]);
+          if (b.textContent !== t) {
+            b.textContent = t;
+            b.classList.remove('tick'); void b.offsetWidth; b.classList.add('tick');
+          }
+        });
+      });
+    };
+    tickCd();
+    setInterval(tickCd, 1000);
+  }
+
   // Reveal on scroll
   var items = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
