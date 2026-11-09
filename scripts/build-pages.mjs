@@ -201,6 +201,11 @@ const slides = [
     cta: ['Shop Food &amp; Grocery', '/shop'],
   },
   {
+    kicker: 'New', title: 'Bihari Masala Range', tag: 'खेतों से घर तक · शुद्ध मसालों का असली स्वाद',
+    text: 'Haldi, Lal Mirch, Dhaniya, Jeera, Garam, Sabji, Meat and Chhole Masala. 100% natural, no added colour, no preservatives.', img: '/assets/img/products/masala-range-wide.jpg',
+    cta: ['Shop masalas', '/shop?q=masala'],
+  },
+  {
     kicker: 'Coming soon', title: 'Home &amp; Living', tag: 'Fashion · Lifestyle · Everyday Essentials',
     text: 'More of your day, the INNIYA way. Get a message the day each category opens.', img: '/assets/img/cat-home.jpg',
     cta: ['Notify me on WhatsApp', wa('Hi INNIYA, please tell me when new categories launch.')], external: true,
@@ -218,7 +223,7 @@ pages.push(page({
             <div class="slide__copy">
               <p class="slide__kicker">${s.kicker}</p>
               <h${i === 0 ? '1' : '2'} class="slide__title">${s.title}</h${i === 0 ? '1' : '2'}>
-              <p class="slide__tag">${s.tag}</p>
+              <p class="slide__tag${/[\u0900-\u097F]/.test(s.tag) ? ' slide__tag--hi' : ''}" ${/[\u0900-\u097F]/.test(s.tag) ? 'lang="hi"' : ''}>${s.tag}</p>
               <p class="slide__text">${s.text}</p>
               ${s.showCats ? `<ul class="slide__cats">${CATS.map((c) => `<li><a href="${c.href}"><span>${sv(catIcon[c.key], 24)}</span>${c.name.replace(' & ', ' &amp;<br>').replace('Everyday ', 'Everyday<br>')}</a></li>`).join('')}</ul>` : ''}
               <a class="btn btn--green" href="${s.cta[1]}"${s.external ? ' target="_blank" rel="noopener"' : ''}${i ? ' tabindex="-1"' : ''}>${s.cta[0]} <span aria-hidden="true">→</span></a>
