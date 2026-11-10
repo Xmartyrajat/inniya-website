@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/admin.css?v=2">
+  <link rel="stylesheet" href="/assets/admin.css?v=3">
 </head>
 <body>
   <!-- Login -->
@@ -33,7 +33,8 @@
     <header class="topbar">
       <a class="topbar__brand" href="/" target="_blank" rel="noopener"><img src="/assets/logo.png" alt="" width="36" height="36"><span>INNIYA</span><em>admin</em></a>
       <nav class="topbar__tabs" aria-label="Admin sections">
-        <button type="button" class="tabbtn is-active" data-tab="orders">Orders <span class="pillcount" data-new-count hidden>0</span></button>
+        <button type="button" class="tabbtn is-active" data-tab="dashboard">Dashboard</button>
+        <button type="button" class="tabbtn" data-tab="orders">Orders <span class="pillcount" data-new-count hidden>0</span></button>
         <button type="button" class="tabbtn" data-tab="products">Products</button>
         <button type="button" class="tabbtn" data-tab="settings">Settings</button>
       </nav>
@@ -45,8 +46,23 @@
 
     <p class="banner" data-storage-banner hidden></p>
 
+    <!-- Dashboard -->
+    <section class="panel" data-panel="dashboard">
+      <div class="panel__head">
+        <div><h1>Namaste, <em>INNIYA</em></h1><p class="muted" data-dash-sub>Your shop at a glance</p></div>
+        <div class="filters"><button type="button" class="btn btn--dark btn--sm" data-go="orders">View orders</button><button type="button" class="btn btn--line btn--sm" data-go-new>Add product</button></div>
+      </div>
+      <div class="kpis" data-kpis></div>
+      <div class="dash">
+        <div class="card2"><div class="card2__head"><h2>Orders · last 14 days</h2><span class="muted" data-chart-sum></span></div><div class="bars" data-bars></div></div>
+        <div class="card2"><div class="card2__head"><h2>Needs attention</h2></div><ul class="todo" data-todo></ul></div>
+        <div class="card2"><div class="card2__head"><h2>Top products</h2><span class="muted">by quantity sold</span></div><ol class="top" data-top></ol></div>
+        <div class="card2"><div class="card2__head"><h2>Recent orders</h2><button type="button" class="muted-link" data-go="orders">See all</button></div><ul class="recent" data-recent></ul></div>
+      </div>
+    </section>
+
     <!-- Orders -->
-    <section class="panel" data-panel="orders">
+    <section class="panel" data-panel="orders" hidden>
       <div class="panel__head">
         <div><h1>Orders</h1><p class="muted" data-orders-sub></p></div>
         <div class="filters" data-order-filters></div>
@@ -148,6 +164,6 @@
   </dialog>
 
   <div class="toast" role="status" aria-live="polite" data-toast></div>
-  <script src="/assets/admin.js?v=2" defer></script>
+  <script src="/assets/admin.js?v=3" defer></script>
 </body>
 </html>

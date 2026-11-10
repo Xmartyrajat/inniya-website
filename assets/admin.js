@@ -69,7 +69,7 @@
 
   // ---------- orders ----------
   function loadOrders() {
-    return api('/api/admin/orders').then(function (d) { S.orders = d.orders || []; S.statuses = d.statuses || []; renderOrders(); });
+    return api('/api/admin/orders').then(function (d) { S.orders = d.orders || []; S.statuses = d.statuses || []; renderOrders(); renderDashboard(); });
   }
   function waCustomer(o) {
     var digits = String(o.customer.phone || '').replace(/\D/g, '');
@@ -132,7 +132,7 @@
 
   // ---------- products ----------
   function loadProducts() {
-    return api('/api/admin/products').then(function (d) { S.products = d.products || []; renderProducts(); });
+    return api('/api/admin/products').then(function (d) { S.products = d.products || []; renderProducts(); renderDashboard(); });
   }
   function renderProducts() {
     var q = S.psearch.toLowerCase();
@@ -293,6 +293,72 @@
       .catch(function (x) { msg.className = 'msg msg--error'; msg.textContent = x.message; msg.hidden = false; });
   });
 
+
+  // ---------- dashboard ----------
+  function dayKey(d) { var x = new Date(d); return x.getFullYear() + '-' + (x.getMonth() + 1) + '-' + x.getDate(); }
+  function renderDashboard() {
+    if (!$('[data-kpis]')) return;
+    var orders = S.orders || [], prods = S.products || [];
+    var valid = orders.filter(function (o) { return o.status !== 'cancelled'; });
+    var now = new Date(), today = dayKey(now);
+    var start7 = new Date(now); start7.setHours(0, 0, 0, 0); start7.setDate(start7.getDate() - 6);
+    var todayO = valid.filter(function (o) { return dayKey(o.createdAt) === today; });
+    var week = valid.filter(function (o) { return new Date(o.createdAt) >= start7; });
+    var sum = function (a) { return a.reduce(function (s, o) { return s + (Number(o.total) || 0); }, 0); };
+    var pending = orders.filter(function (o) { return o.status === 'new' || o.status === 'confirmed'; });
+    var phones = {}; valid.forEach(function (o) { phones[String(o.customer && o.customer.phone || '').replace(/\D/g, '').slice(-10)] = 1; });
+    var kp = [
+      ['Today', money(sum(todayO)), todayO.length + ' order' + (todayO.length === 1 ? '' : 's')],
+      ['Last 7 days', money(sum(week)), week.length + ' orders'],
+      ['To process', String(pending.length), orders.filter(function (o) { return o.status === 'new'; }).length + ' new · ' + orders.filter(function (o) { return o.status === 'confirmed'; }).length + ' confirmed'],
+      ['All-time sales', money(sum(valid)), valid.length + ' orders · ' + Object.keys(phones).filter(Boolean).length + ' customers'],
+      ['Avg order value', money(valid.length ? Math.round(sum(valid) / valid.length) : 0), 'excluding cancelled'],
+      ['Live products', String(prods.filter(function (p) { return p.active !== false; }).length), prods.filter(function (p) { return p.inStock === false; }).length + ' out of stock']
+    ];
+    $('[data-kpis]').innerHTML = kp.map(function (k, i) {
+      return '<div class="kpi' + (i === 2 && pending.length ? ' kpi--alert' : '') + '"><p class="kpi__label">' + k[0] + '</p><p class="kpi__val">' + esc(k[1]) + '</p><p class="kpi__sub">' + esc(k[2]) + '</p></div>';
+    }).join('');
+    // 14-day bars
+    var days = [], max = 1;
+    for (var i = 13; i >= 0; i--) {
+      var d = new Date(now); d.setDate(d.getDate() - i); var k = dayKey(d);
+      var list = valid.filter(function (o) { return dayKey(o.createdAt) === k; });
+      days.push({ d: d, n: list.length, v: sum(list) }); if (list.length > max) max = list.length;
+    }
+    var df = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short' });
+    $('[data-bars]').innerHTML = days.map(function (x, i) {
+      return '<div class="bar" title="' + df.format(x.d) + ': ' + x.n + ' orders, ' + money(x.v) + '"><span class="bar__n">' + (x.n || '') + '</span><span class="bar__fill" style="height:' + Math.max(x.n ? 8 : 2, Math.round(x.n / max * 100)) + '%"></span><span class="bar__d">' + (i % 2 ? '' : df.format(x.d)) + '</span></div>';
+    }).join('');
+    $('[data-chart-sum]').textContent = days.reduce(function (s, x) { return s + x.n; }, 0) + ' orders · ' + money(days.reduce(function (s, x) { return s + x.v; }, 0));
+    // needs attention
+    var todo = [];
+    var nNew = orders.filter(function (o) { return o.status === 'new'; }).length;
+    if (nNew) todo.push(['alert', nNew + ' new order' + (nNew > 1 ? 's' : '') + ' to confirm', 'orders']);
+    var nConf = orders.filter(function (o) { return o.status === 'confirmed'; }).length;
+    if (nConf) todo.push(['warn', nConf + ' confirmed order' + (nConf > 1 ? 's' : '') + ' to ship', 'orders']);
+    prods.filter(function (p) { return p.inStock === false && p.active !== false; }).forEach(function (p) { todo.push(['warn', p.name + ' is out of stock', 'products']); });
+    prods.filter(function (p) { return !p.image; }).forEach(function (p) { todo.push(['info', p.name + ' has no photo', 'products']); });
+    $('[data-todo]').innerHTML = todo.length ? todo.map(function (t) {
+      return '<li class="todo--' + t[0] + '"><button type="button" data-go="' + t[2] + '">' + esc(t[1]) + ' <span aria-hidden="true">→</span></button></li>';
+    }).join('') : '<li class="todo--ok"><span>All caught up. Nothing needs you right now. ✓</span></li>';
+    // top products
+    var qty = {};
+    valid.forEach(function (o) { (o.items || []).forEach(function (it) { var k = it.name || it.id; qty[k] = qty[k] || { q: 0, v: 0 }; qty[k].q += Number(it.qty) || 0; qty[k].v += (Number(it.price) || 0) * (Number(it.qty) || 0); }); });
+    var top = Object.keys(qty).sort(function (a, b) { return qty[b].q - qty[a].q; }).slice(0, 5);
+    $('[data-top]').innerHTML = top.length ? top.map(function (k) { return '<li><span>' + esc(k) + '</span><b>' + qty[k].q + ' sold</b><em>' + money(qty[k].v) + '</em></li>'; }).join('') : '<li class="empty">No sales yet. Your first order will show here.</li>';
+    // recent
+    var when2 = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' });
+    $('[data-recent]').innerHTML = orders.length ? orders.slice().sort(function (a, b) { return new Date(b.createdAt) - new Date(a.createdAt); }).slice(0, 6).map(function (o) {
+      return '<li><div><b>' + esc(o.number) + '</b> <span class="muted">' + esc(o.customer && o.customer.name || '') + '</span><br><small class="muted">' + when2.format(new Date(o.createdAt)) + '</small></div><div class="recent__r"><b>' + money(o.total) + '</b><span class="st st--' + o.status + '">' + STATUS_LABEL[o.status] + '</span></div></li>';
+    }).join('') : '<li class="empty">No orders yet. Share www.inniya.com to get started!</li>';
+    var h = now.getHours();
+    $('[data-dash-sub]').textContent = (h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening') + '. Here’s your shop at a glance.';
+  }
+  document.addEventListener('click', function (e) {
+    var g = e.target.closest('[data-go]'); if (g) { setTab(g.getAttribute('data-go')); window.scrollTo(0, 0); }
+    if (e.target.closest('[data-go-new]')) { setTab('products'); openEditor(null); }
+  });
+
   // ---------- boot ----------
   function boot() {
     api('/api/admin/session').then(function (d) {
@@ -305,8 +371,8 @@
         banner.hidden = false;
         banner.textContent = 'Local test mode: data is saved on this computer only.';
       } else banner.hidden = true;
-      var tab = 'orders';
-      try { tab = sessionStorage.getItem('inniya_admin_tab') || 'orders'; } catch (e) { /* ignore */ }
+      var tab = 'dashboard';
+      try { tab = sessionStorage.getItem('inniya_admin_tab') || 'dashboard'; } catch (e) { /* ignore */ }
       setTab(tab);
       return Promise.all([loadOrders(), loadProducts(), loadSettings()]);
     }).catch(function (e) {
